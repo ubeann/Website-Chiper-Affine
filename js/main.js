@@ -143,23 +143,27 @@ function checkEncrypt() {
 }
 
 function resultEncrypt() {
-	// Variable
-	var a = $('#encryptKeyA').val();
-	var b = $('#encryptKeyB').val();
-	var text = $('#encryptText').val();
-	var encrypt_text = '';
-
-	try {
-		// Encrypt using Affine Chiper
-		encrypt_text = encode(text, {a: parseInt(a), b: parseInt(b)});
-
-		// Show result
-		$('#encrypt_key').html('f(x) = ' + a + 'x + ' + b);
-		$('#encrypt_text').html(encrypt_text.toUpperCase());
-	} catch (e) {
-		// Show error
-		$('#encrypt_key').html(e);
-		$('#encrypt_text').html(e);
+	if ($('#encryptKeyA').val() != '' && $('#encryptKeyB').val() != '' && $('#encryptText').val() != '') {
+		// Variable
+		var a = $('#encryptKeyA').val();
+		var b = $('#encryptKeyB').val();
+		var text = $('#encryptText').val();
+		var encrypt_text = '';
+	
+		try {
+			// Encrypt using Affine Chiper
+			encrypt_text = encode(text, {a: parseInt(a), b: parseInt(b)});
+	
+			// Show result
+			$('#encrypt_key').html('f(x) = ' + a + 'x + ' + b);
+			$('#encrypt_text').html(encrypt_text.toUpperCase());
+		} catch (e) {
+			// Show error
+			$('#encrypt_key').html(e);
+			$('#encrypt_text').html(e);
+		}
+	} else {
+		alert('Lengkapi nilai A, B, dan Teks terlebih dahulu.');
 	}
 }
 
@@ -173,22 +177,26 @@ function checkDecrypt() {
 }
 
 function resultDecrypt() {
-	// Variable
-	var a = $('#decryptKeyA').val();
-	var b = $('#decryptKeyB').val();
-	var text = $('#decryptText').val();
-	var decrypt_text = '';
-
-	try {
-		// Decrypt using Affine Chiper
-		decrypt_text = decode(text.toLowerCase(), {a: parseInt(a), b: parseInt(b)});
-
-		// Show result
-		$('#decrypt_key').html('f(x) = ' + a + 'x + ' + b);
-		$('#decrypt_text').html(decrypt_text);
-	} catch (e) {
-		// Show error
-		$('#decrypt_key').html(e);
-		$('#decrypt_text').html(e);
+	if ($('#decryptKeyA').val() != '' && $('#decryptKeyB').val() != '' && $('#decryptText').val() != '') {
+		// Variable
+		var a = $('#decryptKeyA').val();
+		var b = $('#decryptKeyB').val();
+		var text = $('#decryptText').val();
+		var decrypt_text = '';
+	
+		try {
+			// Decrypt using Affine Chiper
+			decrypt_text = decode(text.toLowerCase(), {a: parseInt(a), b: parseInt(b)});
+	
+			// Show result
+			$('#decrypt_key').html('f(x) = ' + a + 'x + ' + b);
+			$('#decrypt_text').html(decrypt_text);
+		} catch (e) {
+			// Show error
+			$('#decrypt_key').html(e);
+			$('#decrypt_text').html(e);
+		}
+	} else {
+		alert('Lengkapi nilai A, B, dan Teks Enkripsi terlebih dahulu.');
 	}
 }
